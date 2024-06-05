@@ -10,7 +10,51 @@ from .serializers import CommentSerializer
 
 from django.shortcuts import get_object_or_404, get_list_or_404
 
-# # CLASS BASED METHODS
+# GENERICS AND MIXINS
+class CommentListCreateView(
+    generics.GenericAPIView,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin):
+    serializer_class = CommentSerializer
+    response = {
+        "successful": True,
+        "response": "comment",
+        "data": None,
+        }
+    queryset = Comment.objects.all()
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
+    
+class CommentsRetrieveUpdateAndDeleteView(
+    generics.GenericAPIView,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin
+    ):
+    serializer_class = CommentSerializer
+    response = {
+        "successful": True,
+        "response": "comment",
+        "data": None,
+        }
+    queryset = Comment.objects.all()
+    
+    def get(self, request:Request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    
+    def put(self, request:Request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
+    def delete(self, request:Request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+    
+    
+    # # CLASS BASED METHODS
 # class CommentListCreateView(APIView):
 #     serializer_class = CommentSerializer
     
@@ -76,23 +120,3 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 #         comments.delete()
 #         return Response(data=self.response, status=status.HTTP_204_NO_CONTENT)
    
-
-# GENERICS AND MIXINS
-class CommentListCreateView(generics.GenericAPIView):
-    serializer_class = CommentSerializer
-    response = {
-        "successful": True,
-        "response": "comment",
-        "data": None,
-        }
-    
-    
-    
-class CommentsRetrieveUpdateAndDeleteView(APIView):
-    serializer_class = CommentSerializer
-    response = {
-        "successful": True,
-        "response": "comment",
-        "data": None,
-        }
-      

@@ -39,10 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "posts",
     "comments",
+    "plans",
+    "accounts",
     
     #third party libraries
     "rest_framework",
 ]
+
+AUTH_USER_MODULE = "accounts.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
