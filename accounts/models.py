@@ -33,10 +33,7 @@ class User(AbstractUser):
     
     objects = CustomUserManager()
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
-    
-    def __str__(self) -> str:
-        return self.username
+    REQUIRED_FIELDS = ["username",]
     
     groups = models.ManyToManyField(
         Group,
@@ -53,3 +50,6 @@ class User(AbstractUser):
         help_text='Specific permissions for this user.',
         verbose_name='user permissions'
     )
+    def __str__(self) -> str:
+        return self.username
+    
