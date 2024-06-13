@@ -13,6 +13,7 @@ class PlanViewset(viewsets.ModelViewSet): #model viewset helps you to construct 
     
     
     
+    
 # class PlanViewset(viewsets.ViewSet):
 #     def list(self, request:Request):
 #         querySet = Plan.objects.all()

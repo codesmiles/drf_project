@@ -13,6 +13,7 @@ Class Posts
 class Post(models.Model):
     title= models.CharField(max_length=50)
     content= models.TextField()
+    slug = models.CharField(max_length=20, null=True)
     created = models.DateTimeField(auto_now_add=True)
     
     def __str__(self) -> str:

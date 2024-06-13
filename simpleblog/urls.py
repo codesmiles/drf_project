@@ -6,4 +6,6 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     path('', include('plans.urls')),
     path('comments/', include('comments.urls')),
+    path('auth/', include('accounts.urls')),
+    path('payment/', include('payment.urls')),
 ]

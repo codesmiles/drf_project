@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,9 +42,11 @@ INSTALLED_APPS = [
     "comments",
     "plans",
     "accounts",
+    "payment",
     
     #third party libraries
     "rest_framework",
+    "rave_python",
 ]
 
 AUTH_USER_MODULE = "accounts.User"
@@ -130,3 +133,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+FLUTTERWAVE_PUBLIC_KEY = str(os.getenv("FLUTTERWAVE_PUBLIC_KEY"))
+FLUTTERWAVE_SECRET_KEY = str(os.getenv("FLUTTERWAVE_SECRET_KEY"))
+FLUTTERWAVE_ENCRYPTION_KEY = str(os.getenv("FLUTTERWAVE_ENCRYPTION_KEY"))
